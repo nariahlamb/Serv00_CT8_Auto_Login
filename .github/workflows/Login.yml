@@ -4,17 +4,14 @@ on:
   workflow_dispatch:
   
   schedule:
-    - cron: '41 9 */7 * *'
+    - cron: '40 9 */7 * *'
 
 env:
   ACCOUNTS_JSON: ${{ secrets.ACCOUNTS_JSON }}
-  TELEGRAM_JSON: ${{ secrets.TELEGRAM_JSON }}
-  DINGDING_WEBHOOK_URL: ${{ secrets.DINGDING_WEBHOOK_URL }}
-  DINGDING_SECRET: ${{ secrets.DINGDING_SECRET }}
 
 jobs:  
   login:  
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-22.04  
   
     steps:  
       - name: Checkout repository  
@@ -26,7 +23,7 @@ jobs:
           node-version: '20.x'  
   
       - name: Install dependencies  
-        run: npm install puppeteer axios
+        run: npm install puppeteer  
   
       - name: Create accounts.json  
         run: echo "$ACCOUNTS_JSON" > accounts.json  
